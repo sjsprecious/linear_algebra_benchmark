@@ -15,15 +15,17 @@ class naive_trid_solver
         int length; // size of the diagonal
         DTYPE *dl; // sub-diagonal
         DTYPE *d; // diagonal
+        DTYPE *d_ref; // reference diagonal
         DTYPE *du; // super-diagonal
         DTYPE *b; // right-hand side & solution vector
         DTYPE *b_ref; // reference right-hand side
     public:
         naive_trid_solver() = delete; // delete the default constructor
-        naive_trid_solver(int n); // overloaded constructor that takes the size of the matrix as input argument
+        naive_trid_solver(const int n); // overloaded constructor that takes the size of the matrix as input argument
         void solve(); // solve the tridiagonal matrix system
         ~naive_trid_solver(); // destructor
-        DTYPE* get_solution(); // get the solution vector
+        void display(); // display the tridiagonal matrix
+        void verify(); // verify the solution
         // naive_trid_solver(const naive_trid_solver&) = default; // use default copy constructor
         // naive_trid_solver& operator=(const naive_trid_solver&) = default; // use default copy assignment operator
         // naive_trid_solver(naive_trid_solver&& other) = default; // use default move constructor
