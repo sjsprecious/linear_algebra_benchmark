@@ -88,7 +88,4 @@ if(NOT ${GPU_TYPE} STREQUAL "None")
   find_package(CUDAToolkit REQUIRED)
   set(ENABLE_CUDA ON)
   set(CUDA_STANDARD_REQUIRED ON)
-  # Set the CUDA standard to C++20
-  set(CMAKE_CUDA_STANDARD 20)
-  set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 endif()

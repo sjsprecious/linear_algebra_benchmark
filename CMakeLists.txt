@@ -9,16 +9,11 @@ project(
 )
 
 ################################
-# Set the C++ standard to C++20
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-################################
 # Project setup and dependencies
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
+# Add the "cmake" folder to the module path so that the *cmake files can be found by the "include" command
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake") 
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release" CACHE STRING
@@ -44,7 +39,6 @@ set(GPU_TYPE "None" CACHE STRING "The GPU type being targeted")
 # Dependencies
 
 include(cmake/dependencies.cmake)
-include(cmake/test_util.cmake)
 
 ################################
 # Source code or headers
@@ -54,7 +48,7 @@ add_subdirectory(include)
 ################################
 # Tests
 
-if(ENABLE_UNIT_TESTS)
+if(ENABLE_UNIT_TESTS OR ENABLE_BENCHMARK_TESTS)
   enable_testing()
   add_subdirectory(test)
 endif()
