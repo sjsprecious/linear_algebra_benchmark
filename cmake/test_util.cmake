@@ -39,13 +39,13 @@ function(create_standard_test)
     set(TEST_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
   endif()
 
-  add_unit_test(${TEST_NAME} test_${TEST_NAME} "" ${TEST_WORKING_DIRECTORY} ${TEST_SKIP_MEMCHECK} ${TEST_IS_CUDA_TEST})
+  add_my_test(${TEST_NAME} test_${TEST_NAME} "" ${TEST_WORKING_DIRECTORY} ${TEST_SKIP_MEMCHECK} ${TEST_IS_CUDA_TEST})
 endfunction(create_standard_test)
 
 ################################
-# Add a unit test
+# Add a unit or performance test
 
-function(add_unit_test test_name test_binary test_args working_dir test_skip_memcheck test_is_cuda_test)
+function(add_my_test test_name test_binary test_args working_dir test_skip_memcheck test_is_cuda_test)
   add_test(NAME ${test_name}
            COMMAND ${test_binary} ${test_args}
            WORKING_DIRECTORY ${working_dir})
@@ -56,4 +56,4 @@ function(add_unit_test test_name test_binary test_args working_dir test_skip_mem
              COMMAND ${memcheck} ${CMAKE_BINARY_DIR}/${test_binary} ${test_args}
              WORKING_DIRECTORY ${working_dir})
   endif()
-endfunction(add_unit_test)
+endfunction(add_my_test)

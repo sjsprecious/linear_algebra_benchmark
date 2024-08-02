@@ -9,6 +9,12 @@
 #include <stdexcept>
 #include <gtest/gtest.h>
 
+#ifdef USE_DOUBLE
+const double rel_tolerance = 5.e-7;
+#else
+const float rel_tolerance = 5.e-6;
+#endif
+
 // overloaded constructor that takes the size of the matrix as input argument;
 inline naive_trid_solver::naive_trid_solver(const int n) : length(n)
 {
@@ -27,14 +33,14 @@ inline naive_trid_solver::naive_trid_solver(const int n) : length(n)
     // Initialize to some arbitrary values
     for (int i = 0; i < n - 1; i++)
     {
-        dl[i] = -1.0; // sub-diagonal elements
-        du[i] = -1.0; // super-diagonal elements
+        dl[i] = static_cast<DTYPE>(-1.0); // sub-diagonal elements
+        du[i] = static_cast<DTYPE>(-1.0); // super-diagonal elements
     }
     for (int i = 0; i < n; i++)
     {
-        d[i] = 2.0; // diagonal elements
+        d[i] = static_cast<DTYPE>(2.0); // diagonal elements
         d_ref[i] = d[i]; // reference diagonal elements
-        b[i] = 1.0; // right-hand side values
+        b[i] = static_cast<DTYPE>(1.0); // right-hand side values
         b_ref[i] = b[i]; // reference right-hand side values
     }
 }
@@ -109,7 +115,7 @@ inline void naive_trid_solver::verify()
     // Check the solution with the reference right-hand side
     for (int i = 0; i < length; i++)
     {
-        EXPECT_LT(std::abs((res[i] - b_ref[i]) / b_ref[i]), 5.e-7);
+        EXPECT_LT(std::abs((res[i] - b_ref[i]) / b_ref[i]), rel_tolerance);
     }
     delete[] res;
 }

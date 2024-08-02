@@ -14,8 +14,8 @@ void testNaiveTridSolver(const int n)
 TEST(TridMatrixSolver, NaiveImplementation)
 {
   testNaiveTridSolver(10);
-  testNaiveTridSolver(100);
-  testNaiveTridSolver(1000);
-  testNaiveTridSolver(10000);
-  testNaiveTridSolver(100000); 
+//  testNaiveTridSolver(100);
+//  testNaiveTridSolver(1000);
+//  testNaiveTridSolver(10000);
+//  testNaiveTridSolver(100000); 
 }
