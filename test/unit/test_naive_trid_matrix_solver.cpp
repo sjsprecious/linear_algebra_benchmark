@@ -7,7 +7,7 @@
 void testNaiveTridSolver(const int n)
 {
   auto solver = naive_trid_solver(n);
-  solver.solve(); 
+  solver.solve();
 }
 
 TEST(TridMatrixSolver, NaiveImplementation)

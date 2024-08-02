@@ -18,9 +18,8 @@ class naive_trid_solver
         DTYPE *du; // super-diagonal
         DTYPE *b; // right-hand side & solution vector
         DTYPE *b_ref; // reference right-hand side
-        void initialize(int n); // initialize the vectors for the tridiagonal matrix
     public:
-        naive_trid_solver(); // default constructor
+        naive_trid_solver() = delete; // delete the default constructor
         naive_trid_solver(int n); // overloaded constructor that takes the size of the matrix as input argument
         void solve(); // solve the tridiagonal matrix system
         ~naive_trid_solver(); // destructor

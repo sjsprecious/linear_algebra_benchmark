@@ -19,6 +19,7 @@ if(ENABLE_MEMCHECK)
     else()
         set(MEMCHECK_SUPPRESS "--suppressions=${PROJECT_SOURCE_DIR}/test/valgrind.supp")
     endif()
+  endif()
 endif()
 
 ################################
