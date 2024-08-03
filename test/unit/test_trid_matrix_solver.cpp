@@ -5,6 +5,10 @@
 #include <tridiagonal_matrix/trid_solver.hpp>
 #include <gtest/gtest.h>
 #include <vector>
+#ifdef USE_RANDOM_INIT
+#include <random>
+#include <functional>
+#endif
 
 // verify the solution
 template<typename T>
@@ -39,9 +43,9 @@ void testNaiveSolveDoublePrecision(const int n)
   auto matrix = TridiagonalMatrix<double>(n); // generate a tridiagonal matrix
   std::vector<double> b(n); // right-hand side
   std::vector<double> x(n); // solution
-  std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side
+  std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
   NaiveSolve<double>(matrix, b, x); // call the naive tridiaonal matrix solver
-  double rel_tolerance = 5e-11; // relative tolerance for double precision
+  double rel_tolerance = 1e-11; // relative tolerance for double precision
   verify<double>(matrix, b, x, rel_tolerance);
 }
 
@@ -50,7 +54,7 @@ void testNaiveSolveSinglePrecision(const int n)
   auto matrix = TridiagonalMatrix<float>(n); // generate a tridiagonal matrix
   std::vector<float> b(n); // right-hand side
   std::vector<float> x(n); // solution
-  std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side
+  std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
   NaiveSolve<float>(matrix, b, x); // call the naive tridiaonal matrix solver
   float rel_tolerance = 2e-2; // relative tolerance for single precision
   verify<float>(matrix, b, x, rel_tolerance);

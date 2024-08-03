@@ -5,8 +5,10 @@
 #include <tridiagonal_matrix/trid_solver.hpp>
 #include <benchmark/benchmark.h>
 #include <vector>
-
-const unsigned RANDOM_NUMBER_SEED = 123;
+#ifdef USE_RANDOM_INIT
+#include <random>
+#include <functional>
+#endif
 
 // Define a fixture class for the benchmark
 class BenchmarkFixture : public benchmark::Fixture

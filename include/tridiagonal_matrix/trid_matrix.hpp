@@ -3,13 +3,11 @@
 
 #pragma once
 
-#define random_init 1
-
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
 #include <vector>
-#if random_init
+#ifdef USE_RANDOM_INIT
 #include <random>
 #include <functional>
 #endif

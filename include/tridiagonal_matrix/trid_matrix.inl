@@ -6,15 +6,14 @@ template<typename T>
 inline TridiagonalMatrix<T>::TridiagonalMatrix(const int n) : 
         length_(n), dl_(n-1), d_(n), du_(n-1)
 {
-#if random_init
+#ifdef USE_RANDOM_INIT
     // Initialize all the elements to random values
-    std::lognormal_distribution<double> distribution(10.0, 4.0); // Define the log-normal distribution with mean 10.0 and standard deviation 4.0 
-    unsigned int seed = 12345; // Create a random engine with a specific seed
-    std::default_random_engine engine(seed);
-    auto get_double = std::bind(distribution, engine); // Bind the distribution to the random engine
-    std::ranges::generate(dl_, get_double); // sub-diagonal elements
-    std::ranges::generate(du_, get_double); // super-diagonal elements
-    std::ranges::generate(d_, get_double); // diagonal elements
+    std::lognormal_distribution<T> distribution(10.0, 4.0); // Define the log-normal distribution with mean 10.0 and standard deviation 4.0 
+    std::default_random_engine engine(RANDOM_NUMBER_SEED);
+    auto get_number = std::bind(distribution, engine); // Bind the distribution to the random engine
+    std::ranges::generate(dl_, get_number); // sub-diagonal elements
+    std::ranges::generate(du_, get_number); // super-diagonal elements
+    std::ranges::generate(d_, get_number); // diagonal elements
 #else
     // Initialize all the elements to some arbitrary values; somehow this leads to less accurate solution
     std::fill(dl_.begin(), dl_.end(), static_cast<T>(-1.0)); // sub-diagonal elements
