@@ -41,7 +41,7 @@ void testNaiveSolveDoublePrecision(const int n)
   std::vector<double> x(n); // solution
   std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side
   NaiveSolve<double>(matrix, b, x); // call the naive tridiaonal matrix solver
-  double rel_tolerance = 5e-7; // relative tolerance for double precision
+  double rel_tolerance = 5e-11; // relative tolerance for double precision
   verify<double>(matrix, b, x, rel_tolerance);
 }
 
@@ -52,7 +52,7 @@ void testNaiveSolveSinglePrecision(const int n)
   std::vector<float> x(n); // solution
   std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side
   NaiveSolve<float>(matrix, b, x); // call the naive tridiaonal matrix solver
-  float rel_tolerance = 5e-2; // relative tolerance for single precision
+  float rel_tolerance = 2e-2; // relative tolerance for single precision
   verify<float>(matrix, b, x, rel_tolerance);
 }
 
@@ -69,5 +69,7 @@ TEST(TridMatrixSolver, NaiveImplementationSinglePrecision)
 {
   testNaiveSolveSinglePrecision(10);
   testNaiveSolveSinglePrecision(100);
-  testNaiveSolveSinglePrecision(1000); // using a larger matrix size leads to wrong results
+  testNaiveSolveSinglePrecision(1000);
+  testNaiveSolveSinglePrecision(10000);
+  testNaiveSolveSinglePrecision(100000);
 }
