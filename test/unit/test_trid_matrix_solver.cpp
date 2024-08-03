@@ -4,6 +4,7 @@
 #include <tridiagonal_matrix/trid_matrix.hpp>
 #include <tridiagonal_matrix/trid_solver.hpp>
 #include <gtest/gtest.h>
+#include <vector>
 
 // verify the solution
 template<typename T>

@@ -1,8 +1,6 @@
 // Copyright (C) 2023-2024 National Center for Atmospheric Research
 // SPDX-License-Identifier: Apache-2.0
 
-#pragma once
-
 // solve the tridiagonal matrix system
 template<typename T>
 void NaiveSolve(const TridiagonalMatrix<T>& matrix, const std::vector<T>& b, std::vector<T>& x)

@@ -1,12 +1,6 @@
 // Copyright (C) 2023-2024 National Center for Atmospheric Research
 // SPDX-License-Identifier: Apache-2.0
 
-#pragma once
-
-#include <iostream>
-#include <iomanip>
-#include <algorithm>
-
 // Overloaded constructor that takes the size of the matrix as input argument;
 template<typename T>
 inline TridiagonalMatrix<T>::TridiagonalMatrix(const int n) : 
