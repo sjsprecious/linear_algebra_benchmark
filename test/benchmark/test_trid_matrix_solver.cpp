@@ -30,6 +30,13 @@ BENCHMARK_DEFINE_F(BenchmarkFixture, BM_NAIVE_TRID_SOLVER_DOUBLE_PRECISION)
   }
 }
 
+// @brief Register the functions defined above with different number of grid cells
+BENCHMARK_REGISTER_F(BenchmarkFixture, BM_NAIVE_TRID_SOLVER_DOUBLE_PRECISION)->Unit(benchmark::kMillisecond)
+    ->Arg(10)
+    ->Arg(100)
+    ->Arg(1000)
+    ->Arg(10000);
+
 // @brief Define a benchmark function to test the naive tridiagonal matrix solver with single precision
 // @param state Benchmarking argument
 BENCHMARK_DEFINE_F(BenchmarkFixture, BM_NAIVE_TRID_SOLVER_SINGLE_PRECISION)
