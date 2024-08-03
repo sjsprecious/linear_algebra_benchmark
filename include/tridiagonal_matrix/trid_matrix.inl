@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <iostream>
 #include <iomanip>
 #include <algorithm>
 
@@ -18,18 +19,19 @@ inline TridiagonalMatrix<T>::TridiagonalMatrix(const int n) :
 }
 
 // Display the tridiagonal matrix
-inline void TridiagonalMatrix::Display() const
+template<typename T>
+inline void TridiagonalMatrix<T>::Display() const
 {
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length_; i++)
     {
-        for (int j = 0; j < length; j++)
+        for (int j = 0; j < length_; j++)
         {
             if (i == j)
-                std::cout << std::fixed << std::setprecision(12) << d[i] << " ";
+                std::cout << std::fixed << std::setprecision(12) << d_[i] << " ";
             else if (i == j + 1)
-                std::cout << std::fixed << std::setprecision(12) << dl[j] << " ";
+                std::cout << std::fixed << std::setprecision(12) << dl_[j] << " ";
             else if (i + 1 == j)
-                std::cout << std::fixed << std::setprecision(12) << du[i] << " ";
+                std::cout << std::fixed << std::setprecision(12) << du_[i] << " ";
             else
                 std::cout << std::fixed << std::setprecision(2) << 0.0 << " ";
         }
