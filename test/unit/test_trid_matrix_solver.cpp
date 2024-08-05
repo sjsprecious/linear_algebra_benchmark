@@ -3,18 +3,9 @@
 
 #include <tridiagonal_matrix/trid_matrix.hpp>
 #include <tridiagonal_matrix/trid_solver.hpp>
+#include <test_utils.hpp>
 #include <gtest/gtest.h>
 #include <vector>
-
-// verify two vectors with a relative tolerance
-template<typename T>
-void verify(const std::vector<T>& vector_test, const std::vector<T>& vector_base, T rel_tolerance)
-{
-    for (int i = 0; i < matrix.length_; i++)
-    {
-        EXPECT_LT(std::abs((vector_test[i] - vector_base[i]) / vector_base[i]), rel_tolerance);
-    }
-}
 
 void testNaiveSolveDoublePrecision(const int n)
 {
