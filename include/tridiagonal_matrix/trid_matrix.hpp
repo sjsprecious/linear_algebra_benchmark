@@ -7,10 +7,6 @@
 #include <iomanip>
 #include <algorithm>
 #include <vector>
-#ifdef USE_RANDOM_INIT
-#include <random>
-#include <functional>
-#endif
 
 template<typename T>
 class TridiagonalMatrix
@@ -21,10 +17,11 @@ class TridiagonalMatrix
         std::vector<T> dl_; // sub-diagonal
         std::vector<T> d_; // diagonal
         std::vector<T> du_; // super-diagonal
-        std::vector<T> b; // right-hand side & solution vector
-        std::vector<T> b_ref; // reference right-hand side
         TridiagonalMatrix() = delete; // delete the default constructor
-        TridiagonalMatrix(const int n); // overloaded constructor that takes the size of the matrix as input argument
+        TridiagonalMatrix(const int n, const T val); // overloaded constructor that takes the size of the matrix "n" and fixed initial value "val" for all elements of dl_, d_ and du_
+        TridiagonalMatrix(const int n, const T dl_val, const T d_val, const T du_val); // overloaded constructor that takes the size of the matrix "n" and different fixed initial value for dl_, d_ and du_
+        TridiagonalMatrix(const int n, const std::size_t random_number_seed, const T mean, const T stddev); // overloaded constructor that takes the size of the matrix "n" and a seed value for random initial values of all elements of dl_, d_ and du_
+        std::vector<T> ComputeAx(const std::vector<T>& x) const; // compute the product of the tridiagonal matrix and a vector
         void Display() const; // display the tridiagonal matrix
         // naive_trid_solver(const naive_trid_solver&) = default; // use default copy constructor
         // naive_trid_solver& operator=(const naive_trid_solver&) = default; // use default copy assignment operator

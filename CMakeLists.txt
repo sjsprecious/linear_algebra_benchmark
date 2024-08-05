@@ -28,7 +28,6 @@ message ( STATUS "CMake build configuration for linear_algebra_tests(${CMAKE_BUI
 
 option(ENABLE_UNIT_TESTS "Build unit tests" ON)
 option(ENABLE_BENCHMARK_TESTS "Build performance tests" OFF)
-option(ENABLE_RANDOM_INIT "Use random number generator to initialize a vector" ON)
 option(ENABLE_LAPACKE "Enable the usage of LAPACKE package for linear algebra calculation" OFF)
 option(ENABLE_MAGMA "Enable the usage of MAGMA package for linear algebra calculation" OFF)
 option(ENABLE_DPLASMA "Enable the usage of DPLASMA package for linear algebra calculation" OFF)

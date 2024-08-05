@@ -5,36 +5,14 @@
 #include <tridiagonal_matrix/trid_solver.hpp>
 #include <gtest/gtest.h>
 #include <vector>
-#ifdef USE_RANDOM_INIT
-#include <random>
-#include <functional>
-#endif
 
-// verify the solution
+// verify two vectors with a relative tolerance
 template<typename T>
-void verify(const TridiagonalMatrix<T>& matrix, const std::vector<T>& b, 
-               std::vector<T>& x, T rel_tolerance)
+void verify(const std::vector<T>& vector_test, const std::vector<T>& vector_base, T rel_tolerance)
 {
-    std::vector<T> res(matrix.length_); // result of A*x
-
-    // Compute the result of A*x
-    // A*x = d[i]*x[i] + du[i]*x[i+1] + dl[i-1]*x[i-1]
     for (int i = 0; i < matrix.length_; i++)
     {
-        res[i] = matrix.d_[i] * x[i];
-        if (i > 0)
-        {
-            res[i] += matrix.dl_[i - 1] * x[i - 1];
-        }
-        if (i < matrix.length_ - 1)
-        {
-            res[i] += matrix.du_[i] * x[i + 1];
-        }
-    }
-    // Check the solution with the reference right-hand side
-    for (int i = 0; i < matrix.length_; i++)
-    {
-        EXPECT_LT(std::abs((res[i] - b[i]) / b[i]), rel_tolerance);
+        EXPECT_LT(std::abs((vector_test[i] - vector_base[i]) / vector_base[i]), rel_tolerance);
     }
 }
 
@@ -46,7 +24,8 @@ void testNaiveSolveDoublePrecision(const int n)
   std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
   NaiveSolve<double>(matrix, b, x); // call the naive tridiaonal matrix solver
   double rel_tolerance = 1e-11; // relative tolerance for double precision
-  verify<double>(matrix, b, x, rel_tolerance);
+  auto b_test = matrix.ComputeAx(x);
+  verify<double>(b_test, b, rel_tolerance);
 }
 
 void testNaiveSolveSinglePrecision(const int n)
@@ -57,7 +36,8 @@ void testNaiveSolveSinglePrecision(const int n)
   std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
   NaiveSolve<float>(matrix, b, x); // call the naive tridiaonal matrix solver
   float rel_tolerance = 2e-2; // relative tolerance for single precision
-  verify<float>(matrix, b, x, rel_tolerance);
+  auto b_test = matrix.ComputeAx(x);
+  verify<float>(b_test, b, rel_tolerance);
 }
 
 TEST(TridMatrixSolver, NaiveImplementationDoublePrecision)

@@ -8,11 +8,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 target_compile_features(linear_algebra INTERFACE cxx_std_20)
 
-if (ENABLE_RANDOM_INIT)
-  target_compile_definitions(linear_algebra INTERFACE USE_RANDOM_INIT)
-  target_compile_definitions(linear_algebra INTERFACE RANDOM_NUMBER_SEED=711)
-endif()
-
 # if (ENABLE_LAPACKE)
 #   target_compile_definitions(linear_algebra INTERFACE USE_LAPACKE)
 # endif()
