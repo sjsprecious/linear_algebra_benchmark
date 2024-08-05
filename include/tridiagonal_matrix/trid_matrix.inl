@@ -13,11 +13,9 @@ inline TridiagonalMatrix<T>::TridiagonalMatrix(const int n, const T dl_val, cons
 
 // Overloaded constructor that takes the size of the matrix "n" and a seed value for random initial values of all elements of dl_, d_ and du_
 template<typename T>
-inline TridiaonalMatrix<T>::TridiagonalMatrix(const int n, const std::size_t random_number_seed, const T mean, const T stddev) :
+inline TridiagonalMatrix<T>::TridiagonalMatrix(const int n, const std::size_t random_number_seed, const T mean, const T stddev) :
         length_(n), dl_(n-1), d_(n), du_(n-1)
 {
-    #include <random>
-    #include <functional>
     // Initialize all the elements to random values
     std::lognormal_distribution<T> distribution(mean, stddev); // Define the log-normal distribution
     std::default_random_engine engine(random_number_seed); // Define the random engine with a seed value
@@ -29,7 +27,7 @@ inline TridiaonalMatrix<T>::TridiagonalMatrix(const int n, const std::size_t ran
 
 // Compute the product of the tridiagonal matrix and a vector
 template<typename T>
-inline TridiagonalMatrix<T>::ComputeAx(const std::vector<T>& x) const
+inline std::vector<T> TridiagonalMatrix<T>::ComputeAx(const std::vector<T>& x) const
 {
     // Compute the result of A*x
     // A*x = d[i]*x[i] + du[i]*x[i+1] + dl[i-1]*x[i-1]

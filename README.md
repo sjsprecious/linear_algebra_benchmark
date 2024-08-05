@@ -1,9 +1,7 @@
 Unit and benchmark tests for some linear algebra libraries
 ==========================
 
-# Getting Started
-
-## Basic installation (without any linear algebra library)
+# Basic installation (without any linear algebra library)
 To build and install this repo without enabling any linear algebra library on NCAR's HPC (e.g., Derecho), you need to open a terminal window, navigate to a scratch directory, and load the following modules first:
 
 ```

@@ -19,7 +19,7 @@ BENCHMARK_DEFINE_F(BenchmarkFixture, BM_NAIVE_TRID_SOLVER_DOUBLE_PRECISION)
   for (auto _ : state)
   {
     state.PauseTiming();
-    auto matrix = TridiagonalMatrix<double>(state.range(0)); // generate a tridiagonal matrix
+    auto matrix = TridiagonalMatrix<double>(state.range(0), static_cast<std::size_t>(711), static_cast<double>(-10.0), static_cast<double>(4.0)); // generate a tridiagonal matrix
     std::vector<double> b(state.range(0)); // right-hand side
     std::vector<double> x(state.range(0)); // solution
     std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side
@@ -43,7 +43,7 @@ BENCHMARK_DEFINE_F(BenchmarkFixture, BM_NAIVE_TRID_SOLVER_SINGLE_PRECISION)
   for (auto _ : state)
   {
     state.PauseTiming();
-    auto matrix = TridiagonalMatrix<float>(state.range(0)); // generate a tridiagonal matrix
+    auto matrix = TridiagonalMatrix<float>(state.range(0), static_cast<std::size_t>(711), static_cast<float>(-10.0), static_cast<float>(4.0)); // generate a tridiagonal matrix
     std::vector<float> b(state.range(0)); // right-hand side
     std::vector<float> x(state.range(0)); // solution
     std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side

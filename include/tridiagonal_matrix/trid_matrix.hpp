@@ -7,6 +7,8 @@
 #include <iomanip>
 #include <algorithm>
 #include <vector>
+#include <random>
+#include <functional>
 
 template<typename T>
 class TridiagonalMatrix

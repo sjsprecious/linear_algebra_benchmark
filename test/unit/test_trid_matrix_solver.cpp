@@ -9,7 +9,7 @@
 
 void testNaiveSolveDoublePrecision(const int n)
 {
-  auto matrix = TridiagonalMatrix<double>(n); // generate a tridiagonal matrix
+  auto matrix = TridiagonalMatrix<double>(n, static_cast<std::size_t>(711), static_cast<double>(-10.0), static_cast<double>(4.0)); // generate a tridiagonal matrix
   std::vector<double> b(n); // right-hand side
   std::vector<double> x(n); // solution
   std::fill(b.begin(), b.end(), static_cast<double>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
@@ -21,7 +21,7 @@ void testNaiveSolveDoublePrecision(const int n)
 
 void testNaiveSolveSinglePrecision(const int n)
 {
-  auto matrix = TridiagonalMatrix<float>(n); // generate a tridiagonal matrix
+  auto matrix = TridiagonalMatrix<float>(n, static_cast<std::size_t>(711), static_cast<float>(-10.0), static_cast<float>(4.0)); // generate a tridiagonal matrix
   std::vector<float> b(n); // right-hand side
   std::vector<float> x(n); // solution
   std::fill(b.begin(), b.end(), static_cast<float>(1.0)); // initialize the right-hand side with arbitrary values; using random values leads to less accurate solution
