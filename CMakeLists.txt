@@ -40,11 +40,6 @@ set(GPU_TYPE "None" CACHE STRING "The GPU type being targeted")
 include(cmake/dependencies.cmake)
 
 ################################
-# Source code or headers
-
-add_subdirectory(include)
-
-################################
 # Tests
 
 if(ENABLE_UNIT_TESTS OR ENABLE_BENCHMARK_TESTS)
