@@ -1,0 +1,25 @@
+FROM fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        cmake \
+        gcc-c++ \
+        git \
+        make \
+        valgrind \
+    && dnf clean all
+
+# copy the PR source code
+COPY . /linear_algebra_pr/
+
+# build the unit tests with CPU memory checks
+RUN mkdir /build \
+      && cd /build \
+      && cmake \
+        -D CMAKE_BUILD_TYPE=release \
+        -D ENABLE_UNIT_TESTS=ON \
+        -D MICM_ENABLE_MEMCHECK=ON \
+        ../linear_algebra_pr \
+      && make -j 8
+
+WORKDIR /build

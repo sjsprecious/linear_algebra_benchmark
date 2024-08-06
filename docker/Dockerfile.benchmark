@@ -1,0 +1,24 @@
+FROM fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        cmake \
+        gcc-c++ \
+        git \
+        make \
+    && dnf clean all
+
+# copy the PR source code
+COPY . /linear_algebra_pr/
+
+# build the benchmark tests
+RUN mkdir /build \
+      && cd /build \
+      && cmake \
+        -D CMAKE_BUILD_TYPE=release \
+        -D ENABLE_UNIT_TESTS=OFF \
+        -D ENABLE_BENCHMARK_TESTS=ON \
+        ../linear_algebra_pr \
+      && make -j 8
+
+WORKDIR /build

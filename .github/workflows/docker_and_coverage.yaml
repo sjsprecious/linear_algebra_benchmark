@@ -20,7 +20,8 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         dockerfile:
-          - Dockerfile
+          - Dockerfile.unit
+          - Dockerfile.benchmark
           - Dockerfile.memcheck
     steps:
       - name: Checkout code
