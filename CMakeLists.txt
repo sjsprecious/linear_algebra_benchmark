@@ -32,6 +32,7 @@ option(ENABLE_LAPACKE "Enable the usage of LAPACKE package for linear algebra ca
 option(ENABLE_MAGMA "Enable the usage of MAGMA package for linear algebra calculation" OFF)
 option(ENABLE_DPLASMA "Enable the usage of DPLASMA package for linear algebra calculation" OFF)
 option(ENABLE_MEMCHECK "Enable memory checking in tests" OFF)
+option(ENABLE_COVERAGE "Enable code coverage check" OFF)
 set(GPU_TYPE "None" CACHE STRING "The GPU type being targeted")
 
 ################################
@@ -45,6 +46,20 @@ include(cmake/dependencies.cmake)
 if(ENABLE_UNIT_TESTS OR ENABLE_BENCHMARK_TESTS)
   enable_testing()
   add_subdirectory(test)
+endif()
+
+################################
+# Enable CodeCoverage analysis
+
+if(ENABLE_COVERAGE)
+  include(CodeCoverage)
+  append_coverage_compiler_flags()
+  setup_target_for_coverage_lcov(
+      NAME coverage
+      EXECUTABLE "ctest"
+      EXECUTABLE_ARGS ""
+      EXCLUDE "${PROJECT_SOURCE_DIR}/test/*"
+      BASE_DIRECTORY "")  # if there is a source code directory, it should be set here
 endif()
 
 ################################
