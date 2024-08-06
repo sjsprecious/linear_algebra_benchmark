@@ -1,3 +1,6 @@
+
+[![License](https://img.shields.io/github/license/sjsprecious/linear_algebra_benchmark.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/blob/master/LICENSE)
+[![Docker builds](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/docker_and_coverage.yml/badge.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/docker_and_coverage.yml)
 [![codecov](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark/graph/badge.svg?token=9wXiwTjZb8)](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark)
 
 Unit and benchmark tests for some linear algebra libraries
