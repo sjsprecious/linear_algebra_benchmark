@@ -41,14 +41,6 @@ set(GPU_TYPE "None" CACHE STRING "The GPU type being targeted")
 include(cmake/dependencies.cmake)
 
 ################################
-# Tests
-
-if(ENABLE_UNIT_TESTS OR ENABLE_BENCHMARK_TESTS)
-  enable_testing()
-  add_subdirectory(test)
-endif()
-
-################################
 # Enable CodeCoverage analysis
 
 if(ENABLE_COVERAGE)
@@ -60,6 +52,14 @@ if(ENABLE_COVERAGE)
       EXECUTABLE_ARGS ""
       EXCLUDE "${PROJECT_SOURCE_DIR}/test/*"
       BASE_DIRECTORY "")  # if there is a source code directory, it should be set here
+endif()
+
+################################
+# Tests
+
+if(ENABLE_UNIT_TESTS OR ENABLE_BENCHMARK_TESTS)
+  enable_testing()
+  add_subdirectory(test)
 endif()
 
 ################################
