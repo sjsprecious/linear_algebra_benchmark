@@ -23,6 +23,7 @@ jobs:
           - Dockerfile.unit
           - Dockerfile.benchmark
           - Dockerfile.memcheck
+          - Dockerfile.coverage
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,3 +38,18 @@ jobs:
         # only run this if we (1) are not running coverage tests or (2) have built any GPU files
         if: matrix.dockerfile != 'Dockerfile.coverage' && matrix.dockerfile != 'Dockerfile.gpu'
         run: docker run --name test-container -t linear_algebra_tests bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'
+
+      - name: Run coverage tests in container
+        if: matrix.dockerfile == 'Dockerfile.coverage'
+        run: docker run --name test-container -t linear_algebra_tests bash -c 'make coverage ARGS="--rerun-failed --output-on-failure -j8"'
+
+      - name: Copy coverage from container
+        if: matrix.dockerfile == 'Dockerfile.coverage'
+        run: docker cp test-container:build/coverage.info .
+
+      - name: Upload coverage report
+        if: matrix.dockerfile == 'Dockerfile.coverage'
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.info

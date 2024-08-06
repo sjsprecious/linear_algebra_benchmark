@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark/graph/badge.svg?token=9wXiwTjZb8)](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark)
+
 Unit and benchmark tests for some linear algebra libraries
 ==========================
 
