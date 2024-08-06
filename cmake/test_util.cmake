@@ -26,8 +26,6 @@ function(create_standard_test)
 
   add_executable(test_${TEST_NAME} ${TEST_SOURCES})
 
-  target_link_libraries(test_${TEST_NAME} PUBLIC GTest::gtest_main)
-
   # link additional libraries
   foreach(library ${TEST_LIBRARIES})
     target_link_libraries(test_${TEST_NAME} PUBLIC ${library})

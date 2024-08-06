@@ -1,0 +1,39 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  docker-build-and-test:
+    name: Build and Test - ${{ matrix.dockerfile }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        dockerfile:
+          - Dockerfile.unit
+          - Dockerfile.benchmark
+          - Dockerfile.memcheck
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
+
+      - name: Build Docker image
+        run: docker build -t linear_algebra_tests -f docker/${{ matrix.dockerfile }} .
+
+      - name: Run tests in container
+        # only run this if we (1) are not running coverage tests or (2) have built any GPU files
+        if: matrix.dockerfile != 'Dockerfile.coverage' && matrix.dockerfile != 'Dockerfile.gpu'
+        run: docker run --name test-container -t linear_algebra_tests bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'
