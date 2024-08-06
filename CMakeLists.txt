@@ -41,7 +41,7 @@ set(GPU_TYPE "None" CACHE STRING "The GPU type being targeted")
 include(cmake/dependencies.cmake)
 
 ################################
-# Enable CodeCoverage analysis
+# Enable CodeCoverage analysis (this section needs to be placed before adding any unit tests)
 
 if(ENABLE_COVERAGE)
   include(CodeCoverage)
