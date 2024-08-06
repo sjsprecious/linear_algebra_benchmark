@@ -1,0 +1,6 @@
+if (ENABLE_UNIT_TESTS)
+    add_subdirectory(unit)
+endif()
+if (ENABLE_BENCHMARK_TESTS)
+    add_subdirectory(benchmark)
+endif()
