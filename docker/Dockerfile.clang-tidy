@@ -1,0 +1,29 @@
+FROM ubuntu:24.04
+
+RUN apt -y update \
+    && apt -y install \
+        cmake \
+        g++ \
+        git \
+        make \
+#        nvidia-cuda-toolkit \
+        clang \
+        clang-tidy \
+        build-essential \
+    && apt clean all
+
+RUN clang-tidy --version && cmake --version
+
+# copy the PR source code
+COPY . /linear_algebra_pr/
+
+# build the unit test
+RUN cd /linear_algebra_pr \
+    && cmake \
+      -D CMAKE_EXPORT_COMPILE_COMMANDS=ON \
+      -D CMAKE_BUILD_TYPE=release \
+      -D ENABLE_UNIT_TESTS=ON \
+      -B./build \
+      -S.
+
+WORKDIR /linear_algebra_pr

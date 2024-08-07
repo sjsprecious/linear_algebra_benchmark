@@ -7,7 +7,7 @@
 
 // verify two vectors with a relative tolerance
 template<typename T>
-void verify(const std::vector<T>& vector_test, const std::vector<T>& vector_base, T rel_tolerance)
+void Verify(const std::vector<T>& vector_test, const std::vector<T>& vector_base, T rel_tolerance)
 {
   ASSERT_EQ(vector_test.size(), vector_base.size());
   std::size_t vector_size = vector_test.size();
