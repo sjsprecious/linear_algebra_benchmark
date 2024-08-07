@@ -19,7 +19,7 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: Build clang-tidy and micm docker image
+      - name: Build clang-tidy with the docker image
         run: docker build -t clang-tidy-check -f docker/Dockerfile.clang-tidy .
 
       - name: Scan includes

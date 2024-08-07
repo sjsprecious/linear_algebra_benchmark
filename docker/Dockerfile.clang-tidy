@@ -11,7 +11,7 @@ RUN apt -y update \
         build-essential \
     && apt clean all
 
-RUN clang-tidy --version && nvcc --version && cmake --version
+RUN clang-tidy --version && cmake --version
 
 # copy the PR source code
 COPY . /linear_algebra_pr/
