@@ -22,7 +22,7 @@ void testNaiveSolveDoublePrecision(const int n)
   NaiveSolve<double>(matrix, b, x);                         // call the naive tridiaonal matrix solver
   double rel_tolerance = 2e-11;                             // relative tolerance for double precision
   auto b_test = matrix.ComputeAx(x);
-  verify<double>(b_test, b, rel_tolerance);
+  Verify<double>(b_test, b, rel_tolerance);
 }
 
 void testNaiveSolveSinglePrecision(const int n)
@@ -39,7 +39,7 @@ void testNaiveSolveSinglePrecision(const int n)
   NaiveSolve<float>(matrix, b, x);                         // call the naive tridiaonal matrix solver
   float rel_tolerance = 2e-2;                              // relative tolerance for single precision
   auto b_test = matrix.ComputeAx(x);
-  verify<float>(b_test, b, rel_tolerance);
+  Verify<float>(b_test, b, rel_tolerance);
 }
 
 TEST(TridMatrixSolver, NaiveImplementationDoublePrecision)
