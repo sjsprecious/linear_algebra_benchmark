@@ -4,6 +4,7 @@ RUN apt -y update \
     && apt -y install \
         cmake \
         g++ \
+        git \
         make \
 #        nvidia-cuda-toolkit \
         clang \
