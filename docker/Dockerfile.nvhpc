@@ -1,0 +1,35 @@
+
+# nvidia rate limits requests. You can get around this by restarting docker if for 
+# some reason you have to build this image many times
+# https://stackoverflow.com/a/75757516/5217293
+#
+# Container versions, and sizes, can be found at https://catalog.ngc.nvidia.com/orgs/nvidia/containers/nvhpc/tags
+#
+FROM nvcr.io/nvidia/nvhpc:24.7-devel-cuda12.5-ubuntu24.04
+
+RUN apt update \
+    && apt -y install \
+      build-essential \
+      ca-certificates \
+      cmake \
+      cmake-curses-gui \
+    && apt clean 
+
+# set compilers
+ENV CXX=nvc++
+ENV CC=nvc
+ENV FC=nvfortran
+
+# copy the PR source code
+COPY . /linear_algebra_pr/
+
+# build the unit tests
+RUN mkdir /build \
+      && cd /build \
+      && cmake \
+        -D CMAKE_BUILD_TYPE=release \
+        -D ENABLE_UNIT_TESTS=ON \
+        ../linear_algebra_pr \
+      && make -j 8
+
+WORKDIR /build

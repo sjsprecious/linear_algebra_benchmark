@@ -24,6 +24,8 @@ jobs:
           - Dockerfile.benchmark
           - Dockerfile.memcheck
           - Dockerfile.coverage
+          - Dockerfile.intel
+          - Dockerfile.nvhpc
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
