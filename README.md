@@ -3,7 +3,7 @@ Unit and benchmark tests for some linear algebra libraries
 
 [![License](https://img.shields.io/github/license/sjsprecious/linear_algebra_benchmark.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/blob/master/LICENSE)
 [![Docker builds](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/docker_and_coverage.yml/badge.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/docker_and_coverage.yml)
-[![Windows](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/windows.yml/badge.svg)](https://github.comsjsprecious/linear_algebra_benchmark/actions/workflows/windows.yml)
+[![Windows](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/windows.yml/badge.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/windows.yml)
 [![Mac](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/mac.yml/badge.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/mac.yml)
 [![Ubuntu](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/sjsprecious/linear_algebra_benchmark/actions/workflows/ubuntu.yml)
 [![codecov](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark/graph/badge.svg?token=9wXiwTjZb8)](https://codecov.io/gh/sjsprecious/linear_algebra_benchmark)
