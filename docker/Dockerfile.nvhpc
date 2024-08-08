@@ -32,4 +32,4 @@ RUN mkdir /build \
         ../linear_algebra_pr \
       && make -j 8
 
-WORKDIR /builds
+WORKDIR /build
