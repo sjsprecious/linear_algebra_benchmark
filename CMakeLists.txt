@@ -86,10 +86,10 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Intel" OR CMAKE_CXX_COMPILER_ID STREQUAL "In
   # Set compiler flags for Intel C++
   if (WIN32)
     # For Windows
-    target_compile_options(micm INTERFACE "/fp:precise")
+    target_compile_options(linear_algebra INTERFACE "/fp:precise")
   else ()
     # For other operating systems (e.g., Linux, macOS)
-    target_compile_options(micm INTERFACE "-ffp-model=precise")
+    target_compile_options(linear_algebra INTERFACE "-ffp-model=precise")
   endif ()
 endif ()
 

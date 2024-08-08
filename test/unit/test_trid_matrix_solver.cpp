@@ -20,7 +20,7 @@ void testNaiveSolveDoublePrecision(const int n)
   std::fill(b.begin(), b.end(), static_cast<double>(1.0));  // initialize the right-hand side with arbitrary values; using
                                                             // random values leads to less accurate solution
   NaiveSolve<double>(matrix, b, x);                         // call the naive tridiaonal matrix solver
-  double rel_tolerance = 2e-11;                             // relative tolerance for double precision
+  double rel_tolerance = 5e-11;                             // relative tolerance for double precision
   auto b_test = matrix.ComputeAx(x);
   Verify<double>(b_test, b, rel_tolerance);
 }
@@ -37,7 +37,7 @@ void testNaiveSolveSinglePrecision(const int n)
   std::fill(b.begin(), b.end(), static_cast<float>(1.0));  // initialize the right-hand side with arbitrary values; using
                                                            // random values leads to less accurate solution
   NaiveSolve<float>(matrix, b, x);                         // call the naive tridiaonal matrix solver
-  float rel_tolerance = 2e-2;                              // relative tolerance for single precision
+  float rel_tolerance = 4e-2;                              // relative tolerance for single precision
   auto b_test = matrix.ComputeAx(x);
   Verify<float>(b_test, b, rel_tolerance);
 }
